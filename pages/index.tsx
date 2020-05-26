@@ -3,8 +3,10 @@ import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css'
 import { getPostsData } from '../lib/posts'
 import Link from 'next/link'
+import { GetStaticProps } from 'next'
 
-export async function getStaticProps() {
+
+export const getStaticProps: GetStaticProps = async () => {
   const allPostsData = getPostsData()
   return {
     props: {
@@ -13,7 +15,15 @@ export async function getStaticProps() {
   }
 }
 
-export default function Home({ allPostsData }) {
+export default function Home({
+  allPostsData
+}: {
+  allPostsData: {
+    description: string
+    title: string
+    id: string
+  }[]
+}) {
   return (
     <Layout home>
       <Head>

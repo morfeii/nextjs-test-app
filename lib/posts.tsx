@@ -23,7 +23,7 @@ export function getPostsData() {
     // Combine the data with the id
     return {
       id,
-      ...matterResult.data
+      ...(matterResult.data as { description: string; title: string })
     }
   })
   return allPostsData
@@ -71,6 +71,6 @@ export async function getPostData(id) {
   return {
     id,
     contentHtml,
-    ...matterResult.data
+    ...(matterResult.data as { description: string; title: string })
   }
 }
